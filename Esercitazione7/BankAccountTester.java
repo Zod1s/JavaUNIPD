@@ -6,20 +6,32 @@ public class BankAccountTester{
         boolean done = false;
         while (!done){
             System.out.println("Comando (Q, B, D x, W x, A x): ");
-            String command = s.next();
+            // String line = s.nextLine();
+            Scanner parser = new Scanner(s.nextLine());
+            String command = parser.next();
             if (command.toUpperCase().equals("Q")){
-                done = true;
-                System.out.println("Arrivederci");
+                try{
+                    parser.next().equals("");
+                }
+                catch(NoSuchElementException e){
+                    done = true;
+                    System.out.println("Arrivederci");
+                }
             }
             else if (command.toUpperCase().equals("B")){
-                System.out.println(b);
+                try{
+                    parser.next().equals("");
+                }
+                catch(NoSuchElementException e){
+                    System.out.println(b);
+                }
             }
             else if (command.toUpperCase().equals("D")){
                 double param;
                 boolean got = false;
                 do{
                     try{
-                        param = s.nextDouble();
+                        param = parser.nextDouble();
                         got = true;
                         boolean did = b.deposit(param);
                         if (did){
@@ -32,6 +44,9 @@ public class BankAccountTester{
                     catch (InputMismatchException e){
                         got = true;
                     }
+                    catch (NoSuchElementException e){
+                        got = true;
+                    }
                 } while (!got);
             }
             else if (command.toUpperCase().equals("W")){
@@ -39,7 +54,7 @@ public class BankAccountTester{
                 boolean got = false;
                 do{
                     try{
-                        param = s.nextDouble();
+                        param = parser.nextDouble();
                         got = true;
                         boolean did = b.withdraw(param);
                         if (did){
@@ -52,6 +67,9 @@ public class BankAccountTester{
                     catch (InputMismatchException e){
                         got = true;
                     }
+                    catch (NoSuchElementException e){
+                        got = true;
+                    }
                 } while (!got);
             }
             else if (command.toUpperCase().equals("A")){
@@ -59,13 +77,13 @@ public class BankAccountTester{
                 boolean got = false;
                 do{
                     try{
-                        param = s.nextDouble();
+                        param = parser.nextDouble();
                         got = true;
                         double dep = param/100 * b.getBalance();
-                        boolean did = dep > 0;
-                        if (did){
+                        boolean possible = dep > 0;
+                        if (possible){
                             b.deposit(dep);
-                            System.out.println("Interessi depositati: "+dep);
+                            System.out.println("Interessi calcolati e accreditati: "+dep);
                         }
                         else{
                             System.out.println("Interesse non corretto");
@@ -74,8 +92,12 @@ public class BankAccountTester{
                     catch (InputMismatchException e){
                         got = true;
                     }
+                    catch (NoSuchElementException e){
+                        got = true;
+                    }
                 } while (!got);
             }
+            parser.close();
         }
         s.close();
     }
