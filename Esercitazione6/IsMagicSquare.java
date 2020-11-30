@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class IsMagicSquare{
     public static void main(String[] args){
         Scanner s = new Scanner(System.in);
@@ -12,7 +13,7 @@ public class IsMagicSquare{
                 if (index >= array.length){
                     array = ArrayUtil.resize(array, array.length*2);
                 }
-            }   
+            }
         }
         array = ArrayUtil.resize(array, index);
         int l = array.length;
