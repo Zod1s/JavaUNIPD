@@ -6,7 +6,6 @@ public class BankAccountTester{
         boolean done = false;
         while (!done){
             System.out.println("Comando (Q, B, D x, W x, A x): ");
-            // String line = s.nextLine();
             Scanner parser = new Scanner(s.nextLine());
             String command = parser.next();
             if (command.toUpperCase().equals("Q")){
