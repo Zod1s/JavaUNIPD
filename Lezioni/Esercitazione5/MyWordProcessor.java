@@ -1,4 +1,4 @@
-import java.util.*; // problemi con findAndReplace, non vede i delimiters
+import java.util.*;
 public class MyWordProcessor{
     private String text;
     public MyWordProcessor(){
@@ -6,7 +6,7 @@ public class MyWordProcessor{
     }
 
     public void add(String line){
-        text += "\n" + line;
+        text += line + "\n";
     }
 
     public int findAndReplace(String find, String replace){
