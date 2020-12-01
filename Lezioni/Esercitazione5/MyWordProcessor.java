@@ -1,4 +1,4 @@
-import java.util.*; // problemi con findAndReplace, non vede i delimiters
+import java.util.*;
 public class MyWordProcessor{
     private String text;
     public MyWordProcessor(){
