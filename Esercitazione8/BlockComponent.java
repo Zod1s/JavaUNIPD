@@ -36,8 +36,8 @@ public class BlockComponent extends JComponent{
             int b = (int)(1 + rand.nextInt(255));
             Color color = new Color(r, g, b);
             g2.setColor(color);
-            g2.draw(box);
-            g2.fill(color);
+            // g2.draw(box);
+            g2.fill(box);
             return;
         }
 
@@ -61,18 +61,28 @@ public class BlockComponent extends JComponent{
         //lunghezza a caso tra 1/3 e 2/3 della dimensione che devo
         //dividere e le coordinate sono determinate di conseguenza
 
-        if(w > MINw && h <= MINh){
-            
+        if(w <= MINw){
+            double factor = 1.0 / 3 + rand.nextDouble() / 3;
+            int newH = (int)(h * factor);
+            mondrian(g2, x, y, w, newH);
+            mondrian(g2, x, y + newH, w, h - newH);
         }
-        else if(/*condizione*/){
-
-                  
+        else if(h <= MINh){
+            double factor = 1.0 / 3 + rand.nextDouble() / 3;
+            int newW = (int)(w * factor);
+            mondrian(g2, x, y, newW, h);
+            mondrian(g2, x + newW, y, w - newW, h);
         }
         else{
-
-        }
-
-           
+            double factor = 1.0 / 3 + rand.nextDouble() / 3;
+            int newH = (int)(h * factor);
+            factor = 1.0 / 3 + rand.nextDouble() / 3;
+            int newW = (int)(w * factor);
+            mondrian(g2,       x,        y,     newW,     newH);
+            mondrian(g2, x + newW,        y, w - newW,     newH);
+            mondrian(g2,        x, y + newH,     newW, h - newH);
+            mondrian(g2, x + newW, y + newH, w - newW, h - newH);
+        }          
     }
 
     public void paintComponent(Graphics g){
@@ -80,23 +90,20 @@ public class BlockComponent extends JComponent{
         int x = 0;
         int y = 0;
         int width = 1024;
-        int heigh = 768;
+        int height = 768;
         //creo un rettangolo
-        Rectangle box = new Rectangle(x,y,width,heigh);
+        Rectangle box = new Rectangle(x,y,width,height);
         //disegno un rettangolo
         g2.draw(box);
         //divido a caso il rettangolo sia in larghezza che in altezza
         Random r = new Random();
         int xmid = r.nextInt(width)+1;
-        int ymid = r.nextInt(heigh)+1;
+        int ymid = r.nextInt(height)+1;
 
         //invoco il metodo mondrian per ciscuno dei 4 blocchi
-        mondrian(g2,/*inserire i 4 parametri mancanti x,y,width,heigh*/); //alto a sx
-        mondrian(g2,/*inserire i 4 parametri mancanti x,y,width,heigh*/); //alto a dx
-        mondrian(g2,/*inserire i 4 parametri mancanti x,y,width,heigh*/); //basso a sx
-        mondrian(g2,/*inserire i 4 parametri mancanti x,y,width,heigh*/); //basso a dx
-
-           
-    }
-    
+        mondrian(g2,    x,    y,         xmid,          ymid); //alto a sx
+        mondrian(g2,    x, ymid,         xmid, height - ymid); //alto a dx
+        mondrian(g2, xmid,    y, width - xmid,          ymid); //basso a sx
+        mondrian(g2, xmid, ymid, width - xmid, height - ymid); //basso a dx
+    }    
 }
