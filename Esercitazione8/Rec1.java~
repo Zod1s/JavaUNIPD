@@ -1,0 +1,25 @@
+import java.util.*;
+public class Rec1{
+    public static void main(String[] args){
+        if (args[0] == null || args[1] != null){
+            throw new IllegalArgumentException();
+        }
+        else{
+            int n = Integer.parseInt(args[0]);
+            System.out.println(rec(n));
+        }
+    }
+    public static int rec(int n){
+        if (n <= 0){
+            throw new IllegalArgumentException();
+        }
+        else{
+            if (n == 1){
+                return 1;
+            }
+            else{
+                return n + rec(n - 1);
+            }
+        }
+    }
+}

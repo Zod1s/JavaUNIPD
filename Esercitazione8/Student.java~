@@ -1,0 +1,16 @@
+public class Student{
+    private String name;
+    private int written;
+    private int oral;
+    public Student(String n, int w, int o){
+        name = n;
+        written = w;
+        oral = o;
+    }
+    public String getName(){
+        return name;
+    }
+    public int average(){
+        return (written + oral) / 2;
+    }
+}

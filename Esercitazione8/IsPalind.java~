@@ -1,0 +1,7 @@
+public class IsPalind{
+    public static void main(String[] args){
+        if (args[0] == null){
+            throw new IllegalArgumentException();
+        }
+    }
+}
