@@ -1,9 +1,7 @@
 import javax.swing.JFrame;
 
 public class MondrianViewer{
-
     public static void main(String[] args){
-
         JFrame frame = new JFrame();
 
         frame.setSize(1024,768);
@@ -14,10 +12,6 @@ public class MondrianViewer{
         frame.add(component);
 
         frame.setVisible(true);
-        System.out.println("Fine");
-           
-    }
-
-
-    
+        System.out.println("Fine");      
+    }   
 }

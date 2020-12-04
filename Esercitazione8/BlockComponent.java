@@ -30,13 +30,13 @@ public class BlockComponent extends JComponent{
             Rectangle box = new Rectangle(x, y, w, h);
             g2.setColor(Color.BLACK);
             g2.draw(box);
-            box = new Rectangle(x+3, y+3, w-3, h-3);
+            box = new Rectangle(x+1, y+1, w-2, h-2);
             int r = (int)(1 + rand.nextInt(255));
             int g = (int)(1 + rand.nextInt(255));
             int b = (int)(1 + rand.nextInt(255));
             Color color = new Color(r, g, b);
             g2.setColor(color);
-            // g2.draw(box);
+            g2.draw(box);
             g2.fill(box);
             return;
         }
@@ -47,8 +47,12 @@ public class BlockComponent extends JComponent{
         // setto il colore di riempimento a bianco e coloro
         else if(rand.nextInt(100) < PROBABILITY){
             Rectangle box = new Rectangle(x, y, w, h);
-            g2.setColor(Color.WHITE);
+            g2.setColor(Color.BLACK);
             g2.draw(box);
+            box = new Rectangle(x+1, y+1, w-2, h-2);
+            g2.draw(box);
+            g2.setColor(Color.WHITE);
+            g2.fill(box);
             return;
         }
 
