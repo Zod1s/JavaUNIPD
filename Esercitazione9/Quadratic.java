@@ -13,7 +13,6 @@ public class Quadratic{
         b = bcoeff;
         c = ccoeff;
         if (!hasSolutions()){
-            System.out.println("Non ha soluzioni");
             throw new IllegalArgumentException();
         }
         else if(a == 0 && b == 0 && c == 0){
