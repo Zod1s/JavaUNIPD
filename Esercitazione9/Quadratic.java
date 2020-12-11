@@ -4,6 +4,7 @@ public class Quadratic{
     private double a;
     private double b;
     private double c;
+    private int numSol;
     /*
       Costruttore: riceve i coefficienti a, b, c dell'equazione quadratica
       e inizializza i campi di esemplare secondo i valori ricevuti
@@ -17,12 +18,22 @@ public class Quadratic{
         }
         else if(a == 0 && b == 0 && c == 0){
             System.out.println("Ha infinite soluzioni");
+            numSol = -1;
+        }
+        else if (a == 0){
+            numSol = 1;
+        }
+        else{
+            numSol = 2;
         }
     }
     /*
       Restituisce la prima delle due soluzioni dell'equazione quadratica,
       usando la ben nota formula...
     */
+    public int getNumSolutions(){
+        return numSol;
+    }
     public double getA(){
         return a;
     }
