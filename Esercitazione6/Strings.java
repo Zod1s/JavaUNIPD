@@ -6,16 +6,6 @@ public class Strings{
         String s1 = s.nextLine();
         String s2 = s.nextLine();
         boolean isSubString = false;
-        // if (s2.equals("")){
-        //     isSubString = true;
-        // }
-        // else{
-        //     for (int i = 0; i < (s1.length() - s2.length()) && !isSubString; i++){
-        //         if (s2.equals(s1.substring(i, i+s2.length()))){
-        //             isSubString = true;
-        //         }
-        //     }
-        // }
         if (s2.length() == 0){
             isSubString = true;
         }
