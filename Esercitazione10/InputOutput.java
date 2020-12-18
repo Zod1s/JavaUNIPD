@@ -13,7 +13,9 @@ public class InputOutput{
                 String line = parser.nextLine();
                 line = reverse(line);
                 out.println(line);
+                parser.close();
             }
+            s.close();
         }
         catch(FileNotFoundException e){
             System.err.println("File not found");

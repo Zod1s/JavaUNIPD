@@ -46,5 +46,6 @@ public class SquareTester{
             System.out.println(sq2);
             System.out.println(sq1);
         }
+        s.close();
     }
 }
