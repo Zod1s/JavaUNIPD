@@ -12,19 +12,34 @@ public class DNAProfile{
 
             Scanner parser = new Scanner(line);
             parser.next();
-            String[] str = new String[3];
-            for (int i = 0; i < 3; i++){
-                str[i] = parser.next();
+
+            String[] str = new String[1];
+            int index = 0;
+            while(parser.hasNext()){
+                str[index++] = parser.next();
+                if (index == str.length){
+                    String[] temp = new String[index * 2];
+                    System.arraycopy(str, 0, temp, 0, str.length);
+                    str = temp;
+                }
             }
             parser.close();
-
-            Suspect[] suspects = new Suspect[3];
-            for (int i = 0; i < 3; i++){
-                suspects[i] = new Suspect(susParser.nextLine());
+            str = resize(str, index);
+            
+            Suspect[] suspects = new Suspect[1];
+            index = 0;
+            while(susParser.hasNextLine()){
+                suspects[index++] = new Suspect(susParser.nextLine());
+                if (index == suspects.length){
+                    Suspect[] temp = new Suspect[index * 2];
+                    System.arraycopy(suspects, 0, temp, 0, suspects.length);
+                    suspects = temp;
+                }
             }
+            suspects = resize(suspects, index);
 
-            int[] repSus = new int[3];
-            for (int i = 0; i < 3; i++){
+            int[] repSus = new int[str.length];
+            for (int i = 0; i < str.length; i++){
                 repSus[i] = rep(dna, str[i]);
             }
 
@@ -32,7 +47,7 @@ public class DNAProfile{
             boolean found = false;
             for (int i = 0; i < 3 && !found; i++){
                 if (suspects[i].equals(suspect)){
-                    System.out.println("Il colpevole e' "+suspects[i]);
+                    System.out.println("Il colpevole e' "+suspects[i].getName());
                     found = true;
                 }
             }
@@ -70,32 +85,37 @@ public class DNAProfile{
         }
         return maxR;
     }
-}
 
-class Suspect{
-    private String name;
-    private int s1, s2, s3;
-    public Suspect(String name, int[] s){
-        this.name = name;
-        this.s1 = s[0];
-        this.s2 = s[1];
-        this.s3 = s[2];
+    public static int[] resize(int[] a, int newL){
+        int[] newA = new int[newL];
+        if (newL >= a.length){
+            System.arraycopy(a, 0, newA, 0, a.length);
+        }
+        else{
+            System.arraycopy(a, 0, newA, 0, newL);
+        }
+        return newA;
     }
 
-    public Suspect(String toParse){
-        Scanner parser = new Scanner(toParse);
-        name = parser.next();
-        s1 = parser.nextInt();
-        s2 = parser.nextInt();
-        s3 = parser.nextInt();
+    public static String[] resize(String[] a, int newL){
+        String[] newA = new String[newL];
+        if (newL >= a.length){
+            System.arraycopy(a, 0, newA, 0, a.length);
+        }
+        else{
+            System.arraycopy(a, 0, newA, 0, newL);
+        }
+        return newA;
     }
 
-    public String toString(){
-        return name + " " + s1 + " " + s2 + " " + s3;
-    }
-    
-    public boolean equals(Object sus){
-        Suspect s = (Suspect) sus;
-        return (s.s1 == s1 && s.s2 == s2 && s.s3 == s3);
+    public static Suspect[] resize(Suspect[] a, int newL){
+        Suspect[] newA = new Suspect[newL];
+        if (newL >= a.length){
+            System.arraycopy(a, 0, newA, 0, a.length);
+        }
+        else{
+            System.arraycopy(a, 0, newA, 0, newL);
+        }
+        return newA;
     }
 }
