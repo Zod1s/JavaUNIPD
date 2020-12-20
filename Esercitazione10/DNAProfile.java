@@ -2,33 +2,44 @@ import java.util.*;
 import java.io.*;
 public class DNAProfile{
     public static void main(String[] args){
-        Scanner s = new Scanner(System.in);
-        System.out.println("File dei sospettati");
-        String susPath = s.nextLine();
-        System.out.println("File del DNA");
-        String dnaPath = s.nextLine();
+        if (args.length < 2 || args[1] == null) throw new IllegalArgumentException();
+        String susPath = args[0];
+        String dnaPath = args[1];
         try(FileReader susFile = new FileReader(susPath);
             FileReader dnaFile = new FileReader(dnaPath);
             Scanner susParser = new Scanner(susFile);
             Scanner dnaParser = new Scanner(dnaFile);){
             String dna = dnaParser.nextLine();
             String line = susParser.nextLine();
+
             Scanner parser = new Scanner(line);
             parser.next();
             String[] str = new String[3];
             for (int i = 0; i < 3; i++){
                 str[i] = parser.next();
-                System.out.println(str[i]);
             }
             parser.close();
+
             Suspect[] suspects = new Suspect[3];
             for (int i = 0; i < 3; i++){
                 suspects[i] = new Suspect(susParser.nextLine());
-                System.out.println(suspects[i]);
             }
+
             int[] repSus = new int[3];
             for (int i = 0; i < 3; i++){
                 repSus[i] = rep(dna, str[i]);
+            }
+
+            Suspect suspect = new Suspect("", repSus);
+            boolean found = false;
+            for (int i = 0; i < 3 && !found; i++){
+                if (suspects[i].equals(suspect)){
+                    System.out.println("Il colpevole e' "+suspects[i]);
+                    found = true;
+                }
+            }
+            if (!found){
+                System.out.println("Nessun sospetto trovato");
             }
         }
         catch(FileNotFoundException e){
@@ -39,11 +50,27 @@ public class DNAProfile{
             System.err.println("IO Exception");
             System.err.println(e);
         }
-        s.close();
     }
 
     public static int rep(String dna, String str){
-        return -1;
+        int strL = str.length();
+        int dnaL = dna.length();
+        int maxR = 0;
+        for (int index = 0; index < (dnaL - strL); index++){
+            int curR = 0;
+            boolean finish = false;
+            for (int i = index; i < (dnaL - strL) && !finish; i += strL){
+                String sub = dna.substring(i, i + strL);
+                if (str.equals(sub)){
+                    curR += 1;
+                }
+                else{
+                    finish = true;
+                    maxR = Math.max(maxR, curR);
+                }
+            }
+        }
+        return maxR;
     }
 }
 
