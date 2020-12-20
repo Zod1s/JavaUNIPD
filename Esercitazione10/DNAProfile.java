@@ -5,10 +5,8 @@ public class DNAProfile{
         if (args.length < 2 || args[1] == null) throw new IllegalArgumentException();
         String susPath = args[0];
         String dnaPath = args[1];
-        try(FileReader susFile = new FileReader(susPath);
-            FileReader dnaFile = new FileReader(dnaPath);
-            Scanner susParser = new Scanner(susFile);
-            Scanner dnaParser = new Scanner(dnaFile);){
+        try(FileReader susFile = new FileReader(susPath); FileReader dnaFile = new FileReader(dnaPath);
+            Scanner susParser = new Scanner(susFile); Scanner dnaParser = new Scanner(dnaFile);){
             String dna = dnaParser.nextLine();
             String line = susParser.nextLine();
 
