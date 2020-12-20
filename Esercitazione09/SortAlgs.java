@@ -2,17 +2,17 @@ public class SortAlgs{
     public static void insertionSort(int[] array){
         if (array == null) return;
         for (int i = 1; i < array.length; i++){
-            boolean inserted = false;
-            for (int j = i - 1; j >= 0 && !inserted; j--){
+            for (int j = i - 1; j >= 0; j--){
                 if (array[j] > array[j+1]){
                     swap(array, j, j+1);
                 }
                 else{
-                    inserted = true;
+                    break;
                 }
             }
         }
     }
+
     public static void selectionSort(int[] array){
         if (array == null) return;
         for (int i = 0; i < array.length - 1; i++){
@@ -27,6 +27,7 @@ public class SortAlgs{
             }
         }
     }
+
     public static void mergeSort(int[] array){
         if (array == null || array.length <= 1) return;
         int l = array.length / 2;
@@ -38,11 +39,13 @@ public class SortAlgs{
         mergeSort(b);
         merge(array, a, b);
     }
+    
     public static void swap(int[] array, int iS, int iF){
         int temp = array[iS];
         array[iS] = array[iF];
         array[iF] = temp;
     }
+
     public static void merge(int[] m, int[] a, int[] b){
         int aIndex = 0, bIndex = 0, mIndex = 0;
         while(aIndex < a.length && bIndex < b.length){
