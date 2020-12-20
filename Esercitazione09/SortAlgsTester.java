@@ -9,7 +9,7 @@ public class SortAlgsTester{
         int[] selArray = new int[l];
         int[] merArray = new int[l];
         for (int i = 0; i < l; i++){
-            insArray[i] = l - i - 1; //(int)(101*Math.random());
+            insArray[i] = i; //(int)(101*Math.random());
             selArray[i] = insArray[i];
             merArray[i] = insArray[i];
         }

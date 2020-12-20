@@ -30,7 +30,6 @@ public class DNAProfile{
             for (int i = 0; i < 3; i++){
                 repSus[i] = rep(dna, str[i]);
             }
-            
         }
         catch(FileNotFoundException e){
             System.err.println("File not found");
