@@ -1,5 +1,6 @@
 import java.util.*;
 import java.io.*;
+
 public class DNAProfile{
     public static void main(String[] args){
         if (args.length < 2 || args[1] == null) throw new IllegalArgumentException();
@@ -44,6 +45,7 @@ public class DNAProfile{
             }
 
             Suspect suspect = new Suspect("", repSus);
+            System.out.println(suspect);
             boolean found = false;
             for (int i = 0; i < 3 && !found; i++){
                 if (suspects[i].equals(suspect)){
@@ -72,16 +74,16 @@ public class DNAProfile{
         for (int index = 0; index < (dnaL - strL); index++){
             int curR = 0;
             boolean finish = false;
-            for (int i = index; i < (dnaL - strL) && !finish; i += strL){
+            for (int i = index; i <= (dnaL - strL) && !finish; i += strL){ // off-by-one error if < is present in place of <=
                 String sub = dna.substring(i, i + strL);
                 if (str.equals(sub)){
                     curR += 1;
                 }
                 else{
                     finish = true;
-                    maxR = Math.max(maxR, curR);
                 }
             }
+            maxR = Math.max(maxR, curR);
         }
         return maxR;
     }

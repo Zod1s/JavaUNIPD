@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class Suspect{
     private String name;
     private int[] seq;
