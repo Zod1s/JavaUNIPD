@@ -30,12 +30,21 @@ public class Sospetti{
 
     public boolean verifica(int[] elementi){
         if(elementi == null || elementi.length < 1) throw new IllegalArgumentException();
-        if(elementi.length > nSTR.length)
+        if(elementi.length != nSTR.length) // qui devi mettere != invece di >, altrimenti potresti avere che elementi è più corto di nSTR e anche in quel caso devi ritornare false
             return false;
         for(int i = 0; i < elementi.length; i++){
             if(elementi[i] != nSTR[i])
                 return false;
         }
         return true;
+    }
+
+    // aggiungo un metodo toString per vedere se le informazioni sono state parsate correttamente
+    public String toString(){
+        String r = nome;
+        for (int i = 0; i < nSTR.length; i++){
+            r += " " + nSTR[i];
+        }
+        return r;
     }
 }

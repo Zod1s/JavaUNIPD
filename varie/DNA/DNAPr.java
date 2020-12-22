@@ -38,19 +38,18 @@ public class DNAPr{
 
             for(nPersone = 0; nomiScan.hasNextLine(); nPersone++){
                 riga = new Scanner(nomiScan.nextLine());
-
-                if(persone.length<=nPersone)
-                    ArrayUtil.resize(persone,persone.length*2);
-
+                if(persone.length <= nPersone)
+                    ArrayUtil.resize(persone, persone.length * 2);
                 //if(riga.hasNext())
                 persona = new Sospetti(riga.next());
-                //else throw new IllegalArgumentException();	
-                persone[nPersone] = persona;  
+                //else throw new IllegalArgumentException();
+                persone[nPersone] = persona;
                 while(riga.hasNext())
                     persone[nPersone].addSTR(Integer.parseInt(riga.next()));
+                    // System.out.println(persone[nPersone]); parsa correttamente le informazioni
             }
 
-            nSTRPresenti = new int[nSTR];
+            nSTRPresenti = new int[nSTR]; // crea un array con le lunghezze massime delle STR
             while(sequenzaDNA.length() >= 4){
                 // System.out.println(sequenzaDNA+"\n");
                 char ch = sequenzaDNA.charAt(0); // dato che ogni a ogni ciclo aggiorni la variabile e non la usi all'esterno, basta definirla qui
@@ -65,6 +64,10 @@ public class DNAPr{
                     }
                 }
                 sequenzaDNA = sequenzaDNA.substring(1);
+            }
+
+            for (int i = 0; i < nSTRPresenti.length; i++){
+                System.out.println(nSTRPresenti[i]);
             }
 
             for(int i = 0; i < nPersone; i++){
@@ -98,7 +101,7 @@ public class DNAPr{
                                 // altrimenti dà la sottostringa da 0 a 4 escluso, quindi non serve il controllo
         // else if(s1.length() != 4)
         s1 = s1.substring(0,4);
-        System.out.println("confronto tra: "+s1 +" e "+s2);
+        // System.out.println("confronto tra: "+s1 +" e "+s2);
         return s1.equals(s2);
     }
 }
