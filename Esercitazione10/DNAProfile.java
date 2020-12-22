@@ -3,7 +3,7 @@ import java.io.*;
 
 public class DNAProfile{
     public static void main(String[] args){
-        if (args.length < 2 || args[1] == null) throw new IllegalArgumentException();
+        if (args.length < 2 || args[1] == null) throw new IllegalArgumentException(); // ciao
         String susPath = args[0];
         String dnaPath = args[1];
         try(FileReader susFile = new FileReader(susPath); FileReader dnaFile = new FileReader(dnaPath);
