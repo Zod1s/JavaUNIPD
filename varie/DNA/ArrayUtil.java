@@ -10,7 +10,7 @@ public class ArrayUtil{
         }
         return nuovoArray;
     }
-    
+
     public static Sospetti[] resize(Sospetti[] vecchioArray, int nuovaLunghezza){
         if(vecchioArray == null || nuovaLunghezza < 0) throw new IllegalArgumentException();
         int lunghezza = vecchioArray.length;
@@ -22,7 +22,7 @@ public class ArrayUtil{
         }
         return nuovoArray;
     }
-    
+
     public static String[] resize(String[] vecchioArray, int nuovaLunghezza){
         if(vecchioArray == null || nuovaLunghezza < 0) throw new IllegalArgumentException();
         int lunghezza = vecchioArray.length;
