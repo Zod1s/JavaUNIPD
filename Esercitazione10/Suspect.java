@@ -17,6 +17,7 @@ public class Suspect{
         Scanner parser = new Scanner(toParse);
         name = parser.next();
         if (!parser.hasNextInt()){
+            parser.close();
             throw new IllegalArgumentException();
         }
         seq = new int[1];
@@ -30,6 +31,7 @@ public class Suspect{
             }
         }
         seq = DNAProfile.resize(seq, index);
+        parser.close();
     }
 
     public String getName(){
