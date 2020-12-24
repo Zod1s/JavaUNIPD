@@ -1,11 +1,10 @@
-import ADTs.Stack.*;
-
+import ADTs.Queue.*;
 public class ADTTester {
     public static void main(String[] args){
-        VariableSizeStack stack = new VariableSizeStack(1);
-        stack.push(10);
-        stack.push(100);
-        System.out.println(stack.pop());
-        System.out.println(stack.pop());
+        CircularVariableArrayQueue queue = new CircularVariableArrayQueue(1);
+        queue.enqueue(10);
+        queue.enqueue(11);
+        System.out.println(queue.dequeue());
+        System.out.println(queue.dequeue());
     }
 }

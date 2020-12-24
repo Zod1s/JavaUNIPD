@@ -7,9 +7,7 @@ public class VariableSizeStack extends FixedArrayStack{
     public void push(Object elem){
         if (size == stack.length){
             Object[] temp = new Object[size * 2];
-            for (int i = 0; i < size; i++){
-                temp[i] = stack[i];
-            }
+            System.arraycopy(stack, 0, temp, 0, size);
             stack = temp;
         }
         super.push(elem);
