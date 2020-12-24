@@ -1,10 +1,11 @@
-import ADTs.Queue.*;
+import ADTs.Map.*;
 public class ADTTester {
     public static void main(String[] args){
-        CircularVariableArrayQueue queue = new CircularVariableArrayQueue(1);
-        queue.enqueue(10);
-        queue.enqueue(11);
-        System.out.println(queue.dequeue());
-        System.out.println(queue.dequeue());
+        MapArray map = new MapArray();
+        map.put("Primo", 1);
+        map.put("Secondo", 2);
+        map.put("Terzo", 3);
+        Object a = map.put("Terzo", 4);
+        System.out.println(a);
     }
 }
