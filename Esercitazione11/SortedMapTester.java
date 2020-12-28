@@ -2,7 +2,7 @@ import java.util.*;
 
 public class SortedMapTester{
     public static void main(String[] args){
-        SortedArraySortedMap m = new SortedArraySortedMap();
+        SortedArrayMap m = new SortedArrayMap();
         String s = "Una stringa di prova per testare la mappa con una stringa con duplicati";
         Scanner scan = new Scanner(s);
 

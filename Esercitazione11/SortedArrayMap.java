@@ -1,7 +1,7 @@
-public class SortedArraySortedMap implements SortedMapInterface{
+public class SortedArrayMap implements SortedMapInterface{
     private ComparablePair[] map;
     private int size;
-    public SortedArraySortedMap(){
+    public SortedArrayMap(){
         map = new ComparablePair[1];
         makeEmpty();
     }
@@ -15,14 +15,14 @@ public class SortedArraySortedMap implements SortedMapInterface{
     }
 
     public Object remove(Object key){
-        if (!(key instanceof Comparable)) throw new IllegalArgumentException();
+        if (key == null || !(key instanceof Comparable)) throw new IllegalArgumentException();
         for (int i = 0; i < size; i++){
             if (map[i].key.equals(key)){
                 Object r = map[i].value;
                 map[i] = map[--size];
                 return r;
             }
-            else if(((Comparable)map[i].key).compareTo(key) > 0){
+            else if(((Comparable) map[i].key).compareTo(key) > 0){
                 return null;
             }
         }
@@ -30,7 +30,7 @@ public class SortedArraySortedMap implements SortedMapInterface{
     }
 
     public Object put(Object key, Object value){
-        if (!(key instanceof Comparable)) throw new IllegalArgumentException();
+        if (key == null || value == null || !(key instanceof Comparable)) throw new IllegalArgumentException();
         ComparablePair pair = new ComparablePair((Comparable) key, value);
         Object toReturn = remove(key);
         if (size == map.length){
@@ -59,12 +59,12 @@ public class SortedArraySortedMap implements SortedMapInterface{
     }
 
     public Object get(Object key){
-        if (!(key instanceof Comparable)) throw new IllegalArgumentException();
+        if (key == null || !(key instanceof Comparable)) throw new IllegalArgumentException();
         for (int i = 0; i < size; i++){
             if (map[i].key.equals(key)){
                 return map[i].value;
             }
-            else if(((Comparable)map[i].key).compareTo(key) > 0){
+            else if(((Comparable) map[i].key).compareTo(key) > 0){
                 return null;
             }
         }
