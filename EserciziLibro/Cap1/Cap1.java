@@ -1,1 +1,2 @@
-public class Cap1{}
+public class Cap1{
+}
