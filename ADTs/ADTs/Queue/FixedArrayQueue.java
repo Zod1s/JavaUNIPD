@@ -26,8 +26,11 @@ public class FixedArrayQueue implements QueueInterface{
     }
 
     public Object dequeue(){
-        Object r = getFront();
-        front++;
+        if (isEmpty()){
+            throw new EmptyQueueException();
+        }
+        Object r = queue[front];
+        queue[front++] = null;
         return r;
     }
 

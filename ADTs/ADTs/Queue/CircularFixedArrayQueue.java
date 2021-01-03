@@ -13,7 +13,11 @@ public class CircularFixedArrayQueue extends FixedArrayQueue{
     }
 
     public Object dequeue(){
-        Object r = getFront();
+        if (isEmpty()){
+            throw new EmptyQueueException();
+        }
+        Object r = queue[front];
+        queue[front] = null;
         front = increment(front);
         return r;
     }

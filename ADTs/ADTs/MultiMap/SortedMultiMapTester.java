@@ -1,6 +1,6 @@
-import ADTs.MultiMap.*;
+package ADTs.MultiMap;
 import java.util.*;
-public class ADTTester{
+public class SortedMultiMapTester{
     public static void main(String[] args){
         SortedArrayMultiMap m = new SortedArrayMultiMap();
         Random rand = new Random(123); //fisso il seed per debugging

@@ -1,8 +1,8 @@
-import ADTs.MultiMap.*;
+package ADTs.MultiMap;
 import java.util.*;
-public class ADTTester{
+public class MultiMapTester{
     public static void main(String[] args){
-        SortedArrayMultiMap m = new SortedArrayMultiMap();
+        ArrayMultiMap m = new ArrayMultiMap();
         Random rand = new Random(123); //fisso il seed per debugging
         String s = "Una stringa di prova per testare la mappa con una stringa con duplicati";
         Scanner scan = new Scanner(s);
@@ -45,7 +45,7 @@ public class ADTTester{
                 System.out.println((Integer) values[i]);
             }
         }
-        System.out.println("Rimuovo le associazioni con chiave \"con\"");
+        System.out.println("Rimuovo una associazione con chiave \"con\"");
         m.removeAll("con");
         System.out.println("Cerco i valori associato alla parola \"con\"");
         values = m.findAll("con");

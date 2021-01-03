@@ -25,6 +25,7 @@ public class MapArray implements MapInterface{
             if (map[i].getKey().equals(k)){
                 Object elem = map[i].getValue();
                 map[i] = map[--size];
+                map[size + 1] = null;
                 return elem;
             }
         }
