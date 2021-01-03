@@ -24,8 +24,11 @@ public class FixedArrayStack implements StackInterface{
     }
 
     public Object pop(){
-        Object r = top();
-        size--;
+        if (isEmpty()){
+            throw new EmptyStackException();
+        }
+        Object r = stack[--size];
+        stack[size + 1] = null;
         return r;
     }
 
