@@ -81,12 +81,18 @@ public class ArrayDeque implements DequeInterface{
     }
 
     protected int decrement(int index){
-        int newIndex = index - 1;
-        if (newIndex >= 0){
-            return newIndex;
+        // int newIndex = index - 1;
+        // if (newIndex >= 0){
+        //     return newIndex;
+        // }
+        // else{
+        //     return deque.length - 1;
+        // }
+        if (x == 0){
+            return deque.length - 1;
         }
         else{
-            return deque.length - 1;
+            return x - 1;
         }
     }
 
