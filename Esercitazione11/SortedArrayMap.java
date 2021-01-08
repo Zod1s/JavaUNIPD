@@ -26,6 +26,7 @@ public class SortedArrayMap implements SortedMapInterface{
                 for (int j = mid; j < size - 1; j++){
                     map[j] = map[j + 1];
                 }
+                map[size - 1] = null;
                 size--;
                 return elem.value;
             }
