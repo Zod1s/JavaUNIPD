@@ -3,7 +3,6 @@ public class ArraySet implements SetInterface{
     private final static int INITIAL_CAPACITY = 1;
     private Object[] v;
     private int size;
-
     public ArraySet(){
         v = new Object[INITIAL_CAPACITY];
         makeEmpty();

@@ -70,7 +70,7 @@ public class SortedArraySet implements SortedSetInterface{
         if (size < 2){
             return;
         }
-        for (int j = size - 1; j >= 0; j++){
+        for (int j = size - 2; j >= 0; j--){
             if (v[j + 1].compareTo(v[j]) < 0){
                 Comparable temp = v[j];
                 v[j] = v[j + 1];
