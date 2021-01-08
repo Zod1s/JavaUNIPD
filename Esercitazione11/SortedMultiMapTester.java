@@ -13,6 +13,12 @@ public class SortedMultiMapTester{
             m.insert(str, value);
         }
 
+        System.out.println("Stampo le chiavi");
+        Object[] k = m.keys();
+        for(int i = 0; i < k.length; i++){
+                System.out.println((String) k[i]);
+        }
+
         System.out.println("Numero di elementi introdotti " + m.getSize());
         System.out.println("Cerco il valore associato alla parola \"prova\"");
         Object obj = m.find("prova");
@@ -58,7 +64,7 @@ public class SortedMultiMapTester{
         }
 
         System.out.println("Stampo le chiavi");
-        Object[] k = m.keys();
+        k = m.keys();
         for(int i = 0; i < k.length; i++){
                 System.out.println((String) k[i]);
         }

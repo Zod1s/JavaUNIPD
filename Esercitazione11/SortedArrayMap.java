@@ -23,7 +23,7 @@ public class SortedArrayMap implements SortedMapInterface{
             int mid = (low + high) / 2;
             ComparablePair elem = map[mid];
             if (elem.key.equals(key)){
-                for (int j = mid; j < size; j++){
+                for (int j = mid; j < size - 1; j++){
                     map[j] = map[j + 1];
                 }
                 size--;

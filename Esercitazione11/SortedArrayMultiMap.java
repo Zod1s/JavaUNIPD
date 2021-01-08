@@ -1,8 +1,8 @@
 public class SortedArrayMultiMap implements MultiMapInterface{
-    private Pair[] multiMap;
+    private ComparablePair[] multiMap;
     private int size;
     public SortedArrayMultiMap(){
-        multiMap = new Pair[1];
+        multiMap = new ComparablePair[1];
         makeEmpty();
     }
 
@@ -16,19 +16,40 @@ public class SortedArrayMultiMap implements MultiMapInterface{
 
     public Object remove(Object key){
         if (key == null || !(key instanceof Comparable)) throw new IllegalArgumentException();
-        for (int i = 0; i < size; i++){
-            if (multiMap[i].key.equals(key)){
-                Object r = multiMap[i].value;
-                for (int j = i; j < size; j++){
+        Comparable compKey = (Comparable) key;
+        int low = 0;
+        int high = size;
+        while (low < high){
+            int mid = (low + high) / 2;
+            ComparablePair elem = multiMap[mid];
+            if (elem.key.equals(compKey)){
+                for (int j = mid; j < size - 1; j++){
                     multiMap[j] = multiMap[j + 1];
                 }
+                multiMap[size - 1] = null;
                 size--;
-                return r;
+                return elem.key;
             }
-            else if (((Comparable) multiMap[i].key).compareTo((Comparable) key) > 0){
-                break;
+            else if (elem.key.compareTo(compKey) > 0){
+                high = mid;
+            }
+            else{
+                low = mid + 1;
             }
         }
+        // for (int i = 0; i < size; i++){
+        //     if (multiMap[i].key.equals(key)){
+        //         Object r = multiMap[i].value;
+        //         for (int j = i; j < size; j++){
+        //             multiMap[j] = multiMap[j + 1];
+        //         }
+        //         size--;
+        //         return r;
+        //     }
+        //     else if ((multiMap[i].key).compareTo(key) > 0){
+        //         break;
+        //     }
+        // }
         return null;
     }
 
@@ -37,7 +58,7 @@ public class SortedArrayMultiMap implements MultiMapInterface{
         int index = 0;
         int i = 0;
         Comparable compKey = (Comparable) key;
-        while (i < size && ((Comparable) multiMap[i].key).compareTo(compKey) <= 0){
+        while (i < size && (multiMap[i].key).compareTo(compKey) <= 0){
             if (multiMap[i].key.equals(key)){
                 toReturn[index++] = multiMap[i].value;
                 for (int j = i; j < size; j++){
@@ -55,9 +76,9 @@ public class SortedArrayMultiMap implements MultiMapInterface{
 
     public void insert(Object key, Object value){
         if (key == null || value == null || !(key instanceof Comparable)) throw new IllegalArgumentException();
-        Pair pair = new Pair(key, value);
+        ComparablePair pair = new ComparablePair((Comparable) key, value);
         if (size == multiMap.length){
-            Pair[] temp = new Pair[size * 2];
+            ComparablePair[] temp = new ComparablePair[size * 2];
             System.arraycopy(multiMap, 0, temp, 0, size);
             multiMap = temp;
         }
@@ -68,8 +89,8 @@ public class SortedArrayMultiMap implements MultiMapInterface{
     void sortKeys(){
         for (int i = 1; i < size; i++){
             for (int j = i - 1; j >= 0; j--){
-                if (((Comparable) multiMap[j + 1].key).compareTo((Comparable) multiMap[j].key) < 0){
-                    Pair temp = multiMap[j];
+                if ((multiMap[j + 1].key).compareTo(multiMap[j].key) < 0){
+                    ComparablePair temp = multiMap[j];
                     multiMap[j] = multiMap[j + 1];
                     multiMap[j + 1] = temp;
                 }
@@ -86,7 +107,7 @@ public class SortedArrayMultiMap implements MultiMapInterface{
             if (multiMap[i].key.equals(key)){
                 return multiMap[i].value;
             }
-            else if (((Comparable) multiMap[i].key).compareTo((Comparable) key) > 0){
+            else if ((multiMap[i].key).compareTo((Comparable) key) > 0){
                 break;
             }
         }
@@ -123,10 +144,10 @@ public class SortedArrayMultiMap implements MultiMapInterface{
         return temp;
     }
 
-    private class Pair{
-        Object key;
+    private class ComparablePair{
+        Comparable key;
         Object value;
-        public Pair(Object k, Object v){
+        public ComparablePair(Comparable k, Object v){
             key = k;
             value = v;
         }
