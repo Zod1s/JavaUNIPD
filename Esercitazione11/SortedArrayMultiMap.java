@@ -15,6 +15,7 @@ public class SortedArrayMultiMap implements MultiMapInterface{
     }
 
     public Object remove(Object key){
+        if (key == null || !(key instanceof Comparable)) throw new IllegalArgumentException();
         for (int i = 0; i < size; i++){
             if (multiMap[i].key.equals(key)){
                 Object r = multiMap[i].value;

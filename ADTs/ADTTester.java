@@ -9,5 +9,7 @@ public class ADTTester{
         for (int i = 0; i < s.length; i++){
             System.out.println(s[i]);
         }
+        System.out.println(set.contains(4));
+        System.out.println(set.contains(1));
     }
 }
