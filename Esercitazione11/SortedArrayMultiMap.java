@@ -28,7 +28,7 @@ public class SortedArrayMultiMap implements MultiMapInterface{
                 }
                 multiMap[size - 1] = null;
                 size--;
-                return elem.key;
+                return elem.value;
             }
             else if (elem.key.compareTo(compKey) > 0){
                 high = mid;
@@ -37,19 +37,6 @@ public class SortedArrayMultiMap implements MultiMapInterface{
                 low = mid + 1;
             }
         }
-        // for (int i = 0; i < size; i++){
-        //     if (multiMap[i].key.equals(key)){
-        //         Object r = multiMap[i].value;
-        //         for (int j = i; j < size; j++){
-        //             multiMap[j] = multiMap[j + 1];
-        //         }
-        //         size--;
-        //         return r;
-        //     }
-        //     else if ((multiMap[i].key).compareTo(key) > 0){
-        //         break;
-        //     }
-        // }
         return null;
     }
 
@@ -102,13 +89,21 @@ public class SortedArrayMultiMap implements MultiMapInterface{
     }
 
     public Object find(Object key){
-        if (!(key instanceof Comparable)) throw new IllegalArgumentException();
-        for (int i = 0; i < size; i++){
-            if (multiMap[i].key.equals(key)){
-                return multiMap[i].value;
+        if (key == null || !(key instanceof Comparable)) throw new IllegalArgumentException();
+        Comparable compKey = (Comparable) key;
+        int low = 0;
+        int high = size;
+        while (low < high){
+            int mid = (low + high) / 2;
+            ComparablePair elem = multiMap[mid];
+            if (elem.key.equals(compKey)){
+                return elem.value;
             }
-            else if ((multiMap[i].key).compareTo((Comparable) key) > 0){
-                break;
+            else if (elem.key.compareTo(compKey) > 0){
+                high = mid;
+            }
+            else{
+                low = mid + 1;
             }
         }
         return null;
