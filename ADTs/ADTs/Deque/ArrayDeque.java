@@ -88,11 +88,11 @@ public class ArrayDeque implements DequeInterface{
         // else{
         //     return deque.length - 1;
         // }
-        if (x == 0){
+        if (index == 0){
             return deque.length - 1;
         }
         else{
-            return x - 1;
+            return index - 1;
         }
     }
 
