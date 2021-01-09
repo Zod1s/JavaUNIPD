@@ -82,7 +82,8 @@ public class SortedArraySet implements SortedSetInterface{
         }
     }
 
-    public static SortedSetInterface union(SortedSetInterface s1, SortedSetInterface s2){ // O(nlog(n)), simile al merge
+    public static SortedSetInterface union(SortedSetInterface s1, SortedSetInterface s2){
+        // O(nlog(n)), simile al merge
         // in questo caso add è O(log(n)) perché l'elemento inserito è già in fondo, quindi
         // il sort è O(1) mentre il contains è sempre O(log(n))
         SortedSetInterface x = new SortedArraySet();
@@ -115,8 +116,9 @@ public class SortedArraySet implements SortedSetInterface{
         Comparable[] v1 = s1.toSortedArray();
         Comparable[] v2 = s2.toSortedArray();
         for (int i = 0, j = 0; i < v1.length; i++){
-            while (j < v2.length && v1[i].compareTo(v2[j]) > 0){ // se v1 > v2, allora gli elementi di
-                                                                 // v2 non sono presenti in v1
+            while (j < v2.length && v1[i].compareTo(v2[j]) > 0){
+                // se v1 > v2, allora gli elementi di
+                // v2 non sono presenti in v1
                 j++;
             }
             if (j == v2.length){

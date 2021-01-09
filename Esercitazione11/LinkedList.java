@@ -151,28 +151,23 @@ public class LinkedList implements Container{
             }
             previous = null; // non si puo’ fare remove due volte
         }
-
-        public boolean hasPrevious(){
+        public boolean hasPrevious() {
             // TODO Auto-generated method stub
             return false;
         }
-
-        public Object previous(){
+        public Object previous() {
             // TODO Auto-generated method stub
             return null;
         }
-
-        public int nextIndex(){
+        public int nextIndex() {
             // TODO Auto-generated method stub
             return 0;
         }
-
-        public int previousIndex(){
+        public int previousIndex() {
             // TODO Auto-generated method stub
             return 0;
         }
-
-        public void set(Object e){
+        public void set(Object e) {
             // TODO Auto-generated method stub
         }
     }
