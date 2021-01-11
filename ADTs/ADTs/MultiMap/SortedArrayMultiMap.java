@@ -47,7 +47,8 @@ public class SortedArrayMultiMap implements MultiMapInterface{
         int index = 0;
         int i = 0;
         Comparable compKey = (Comparable) key;
-        while (i < size && (multiMap[i].key).compareTo(compKey) <= 0){
+
+        while (i < size && multiMap[i].key.compareTo(compKey) <= 0){
             if (multiMap[i].key.equals(key)){
                 toReturn[index++] = multiMap[i].value;
                 for (int j = i; j < size; j++){
@@ -76,16 +77,14 @@ public class SortedArrayMultiMap implements MultiMapInterface{
     }
 
     void sortKeys(){
-        for (int i = 1; i < size; i++){
-            for (int j = i - 1; j >= 0; j--){
-                if ((multiMap[j + 1].key).compareTo(multiMap[j].key) < 0){
-                    ComparablePair temp = multiMap[j];
-                    multiMap[j] = multiMap[j + 1];
-                    multiMap[j + 1] = temp;
-                }
-                else{
-                    break;
-                }
+        for (int j = size - 2; j >= 0; j--){
+            if (multiMap[j + 1].key.compareTo(multiMap[j].key) < 0){
+                ComparablePair temp = multiMap[j];
+                multiMap[j] = multiMap[j + 1];
+                multiMap[j + 1] = temp;
+            }
+            else{
+                break;
             }
         }
     }
@@ -112,9 +111,10 @@ public class SortedArrayMultiMap implements MultiMapInterface{
     }
 
     public Object[] findAll(Object key){
+        if (key == null || !(key instanceof Comparable)) throw new IllegalArgumentException();
         Object[] toReturn = new Object[size];
         int index = 0;
-        for (int i = 0; i < size; i++){
+        for (int i = 0; i < size && multiMap[i].key.compareTo(key) <= 0; i++){
             if (multiMap[i].key.equals(key)){
                 toReturn[index++] = multiMap[i].value;
             }
