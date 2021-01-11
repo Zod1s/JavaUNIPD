@@ -41,6 +41,7 @@ public class SortedArrayMultiMap implements MultiMapInterface{
     }
 
     public Object[] removeAll(Object key){
+        if (key == null || !(key instanceof Comparable)) throw new IllegalArgumentException();
         Object[] toReturn = new Object[size];
         int index = 0;
         int i = 0;
