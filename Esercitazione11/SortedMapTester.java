@@ -1,5 +1,4 @@
 import java.util.*;
-
 public class SortedMapTester{
     public static void main(String[] args){
         SortedArrayMap m = new SortedArrayMap();
