@@ -16,7 +16,7 @@ public class DNAProfile{
 
             String[] str = new String[1];
             int index = 0;
-            while(parser.hasNext()){
+            while (parser.hasNext()){
                 str[index++] = parser.next();
                 if (index == str.length){
                     String[] temp = new String[index * 2];
