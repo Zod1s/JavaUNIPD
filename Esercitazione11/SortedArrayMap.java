@@ -18,8 +18,8 @@ public class SortedArrayMap implements SortedMapInterface{
         if (key == null || !(key instanceof Comparable)) throw new IllegalArgumentException();
         Comparable compKey = (Comparable) key;
         int low = 0;
-        int high = size;
-        while (low < high){
+        int high = size - 1;
+        while (low <= high){
             int mid = (low + high) / 2;
             ComparablePair elem = map[mid];
             if (elem.key.equals(key)){
@@ -31,7 +31,7 @@ public class SortedArrayMap implements SortedMapInterface{
                 return elem.value;
             }
             else if (elem.key.compareTo(compKey) > 0){
-                high = mid;
+                high = mid - 1;
             }
             else{
                 low = mid + 1;
@@ -54,7 +54,7 @@ public class SortedArrayMap implements SortedMapInterface{
         return toReturn;
     }
 
-    void sortKeys(){
+    private void sortKeys(){
         for (int j = size - 2; j >= 0; j--){
             if (map[j + 1].key.compareTo(map[j].key) < 0){
                 ComparablePair temp = map[j + 1];
@@ -71,15 +71,15 @@ public class SortedArrayMap implements SortedMapInterface{
         if (key == null || !(key instanceof Comparable)) throw new IllegalArgumentException();
         Comparable compKey = (Comparable) key;
         int low = 0;
-        int high = size;
-        while (low < high){
+        int high = size - 1;
+        while (low <= high){
             int mid = (low + high) / 2;
             ComparablePair elem = map[mid];
             if (elem.key.equals(key)){
                 return elem.value;
             }
             else if (elem.key.compareTo(compKey) > 0){
-                high = mid;
+                high = mid - 1;
             }
             else{
                 low = mid + 1;
