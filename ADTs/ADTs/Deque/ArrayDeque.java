@@ -5,7 +5,7 @@ public class ArrayDeque implements DequeInterface{
     private int back; // points to the cell that is going to be written
 
     public ArrayDeque(){
-        deque = new Object[16];
+        deque = new Object[1];
         makeEmpty();
     }
 
@@ -25,9 +25,8 @@ public class ArrayDeque implements DequeInterface{
             System.arraycopy(deque, 0, temp, 0, deque.length);
             if (back < front){
                 System.arraycopy(temp, 0, temp, deque.length, back);
+                back += deque.length;
             }
-            front = temp.length;
-            back = deque.length;
             deque = temp;
         }
         front = decrement(front);
@@ -41,9 +40,8 @@ public class ArrayDeque implements DequeInterface{
             System.arraycopy(deque, 0, temp, 0, deque.length);
             if (back < front){
                 System.arraycopy(temp, 0, temp, deque.length, back);
+                back += deque.length;
             }
-            front = temp.length - 1;
-            back = deque.length;
             deque = temp;
         }
         deque[back] = element;
