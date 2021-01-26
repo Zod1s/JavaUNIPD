@@ -2,70 +2,74 @@ import java.util.Random;
 
 public class MergeSort{
     public static void main(String[] args) {
-        Stack toSort = new Stack();
+        int[] toSort = new int[20];
         Random random = new Random();
-        for (int i = 0; i < 10; i++){
-            toSort.push(random.nextInt(40));
+        for (int i = 0; i < 20; i++){
+            toSort[i] = (random.nextInt(100));
+            System.out.print(toSort[i] + " ");
         }
-        System.out.println(toSort);
-        mergeSort(toSort);
-        System.out.println(toSort);
+
+        System.out.println();
+
+        toSort = mergeSort(toSort);
+        for (int i = 0; i < 20; i++){
+            System.out.print(toSort[i] + " ");
+        }
+        System.out.println();
     }
 
-    public static void mergeSort(Stack stack){
-        if (stack == null) throw new IllegalArgumentException();
-        if (stack.getSize() == 1) return;
+    public static int[] mergeSort(int[] a){
+        Stack stack1 = new Stack();
+        Stack stack2 = new Stack();
 
-        int mid = stack.getSize() / 2;
-
-        Stack left = new Stack();
-        Stack right = new Stack();
-
-        int max = stack.getSize() - mid;
-
-        for (int i = 0; i < max; i++){
-            right.push(stack.pop());
+        for (int i = 0; i < a.length; i++){
+            int[] temp = {a[i]};
+            stack1.push(temp);
         }
 
-        max = mid;
+        while (stack1.getSize() > 1){
+            while (stack1.getSize() > 1){
+                int[] l = (int[]) stack1.pop();
+                int[] r = (int[]) stack1.pop();
+                stack2.push(merge(l, r));
+            }
 
-        for (int i = 0; i < max; i++){
-            left.push(stack.pop());
+            while (!stack1.isEmpty()){
+                stack2.push(stack1.pop());
+            }
+
+            while (stack2.getSize() > 1){
+                int[] l = (int[]) stack2.pop();
+                int[] r = (int[]) stack2.pop();
+                stack1.push(merge(l, r));
+            }
+
+            while (!stack2.isEmpty()){
+                stack1.push(stack2.pop());
+            }
         }
-
-        mergeSort(left);
-        mergeSort(right);
-
-        merge(stack, left, right);
+        return (int[]) stack1.pop();
     }
 
-    public static void merge(Stack stack, Stack left, Stack right){
-        Stack leftHelper = new Stack();
-        Stack rightHelper = new Stack();
-
-        while (!left.isEmpty()){  // rovescio gli stack
-            leftHelper.push(left.pop());
-        }
-
-        while (!right.isEmpty()){
-            rightHelper.push(right.pop());
-        }
-
-        while (!leftHelper.isEmpty() && !rightHelper.isEmpty()){
-            if (leftHelper.top().compareTo(rightHelper.top()) < 0){
-                stack.push(leftHelper.pop());
+    public static int[] merge(int[] b, int[] c){
+        int aIndex = 0;
+        int bIndex = 0;
+        int cIndex = 0;
+        int[] a = new int[b.length + c.length];
+        while (bIndex < b.length && cIndex < c.length){
+            if (b[bIndex] < c[cIndex]){
+                a[aIndex++] = b[bIndex++];
             }
             else{
-                stack.push(rightHelper.pop());
+                a[aIndex++] = c[cIndex++];
             }
         }
-
-        while (!leftHelper.isEmpty()){
-            stack.push(leftHelper.pop());
+        while (bIndex < b.length){
+            a[aIndex++] = b[bIndex++];
         }
-
-        while (!rightHelper.isEmpty()){
-            stack.push(rightHelper.pop());
+        while (cIndex < c.length){
+            a[aIndex++] = c[cIndex++];
         }
+        return a;
     }
 }

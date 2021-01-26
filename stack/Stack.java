@@ -1,9 +1,9 @@
 public class Stack{
-    private Comparable[] stack;
+    private Object[] stack;
     private int size;
 
     public Stack(){
-        stack = new Comparable[1];
+        stack = new Object[1];
         makeEmpty();
     }
 
@@ -15,10 +15,10 @@ public class Stack{
         return (size == 0);
     }
 
-    public void push(Comparable obj){
+    public void push(Object obj){
         if (obj == null) throw new IllegalArgumentException();
         if (size == stack.length){
-            Comparable[] temp = new Comparable[size * 2];
+            Object[] temp = new Object[size * 2];
             System.arraycopy(stack, 0, temp, 0, size);
             stack = temp;
         }
@@ -26,12 +26,12 @@ public class Stack{
         stack[size++] = obj;
     }
 
-    public Comparable pop(){
+    public Object pop(){
         if (isEmpty()) throw new IllegalArgumentException();
         return stack[--size];
     }
 
-    public Comparable top(){
+    public Object top(){
         if (isEmpty()) throw new IllegalArgumentException();
         return stack[size - 1];
     }
