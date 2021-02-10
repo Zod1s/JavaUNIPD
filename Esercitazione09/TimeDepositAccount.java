@@ -19,6 +19,11 @@ public class TimeDepositAccount extends SavingsAccount{
         return months;
     }
 
+    public void withdraw(int amt){
+        if (months > 0) super.withdraw(20);
+        super.withdraw(amt);
+    }
+    
     public String toString(){
         return "TimeDepositAccount[months = " + months + "]" + super.toString();
     }
