@@ -12,7 +12,7 @@ public class TimeDepositAccount extends SavingsAccount{
 
     public void addInterest(){
         super.addInterest();
-        months--;
+        if (months > 0) months--;
     }
 
     public int getMonthsLeft(){
