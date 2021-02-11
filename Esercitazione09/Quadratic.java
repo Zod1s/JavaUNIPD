@@ -18,7 +18,7 @@ public class Quadratic{
         }
         else if(a == 0 && b == 0 && c == 0){
             System.out.println("Ha infinite soluzioni");
-            numSol = -1;
+            numSol = Integer.MAX_VALUE;
         }
         else if (a == 0){
             numSol = 1;
@@ -59,8 +59,8 @@ public class Quadratic{
         if (a == 0 && b != 0){
             return (- c/b);
         }
-        else if (a == 0 && b == 0 && c == 0){
-            return -1;
+        else if (a == 0 && b == 0){
+            return NaN;
         }
         else{
             return (-b + getDelta()) / (2 * a);
@@ -70,12 +70,12 @@ public class Quadratic{
       Restituisce la seconda delle due soluzioni dell'equazione quadratica,
       usando la ben nota formula...
     */
-    public double getSolution2(){        
+    public double getSolution2(){
         if (a == 0 && b != 0){
             return (- c/b);
         }
-        else if (a == 0 && b == 0 && c == 0){
-            return -1;
+        else if (a == 0 && b == 0){
+            return NaN;
         }
         else{
             return (-b - getDelta()) / (2 * a);
@@ -86,7 +86,7 @@ public class Quadratic{
       (ovvero se il discriminante e` negativo)
     */
     public boolean hasSolutions(){
-        return !(a == 0 && b == 0 && c!=0) && (getDelta() >= 0); 
+        return !(a == 0 && b == 0 && c!=0) && (getDelta() >= 0);
     }
 
     public String toString(){
