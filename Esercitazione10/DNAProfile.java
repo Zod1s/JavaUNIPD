@@ -74,8 +74,8 @@ public class DNAProfile{
         for (int index = 0; index < (dnaL - strL); index++){
             int curR = 0;
             boolean finish = false;
-            for (int i = index; i <= (dnaL - strL) && !finish; i += strL){ // off-by-one error if < is present in place of <=
-                String sub = dna.substring(i, i + strL);                   // because substring isnt inclusive in the second argument
+            for (int i = index; i < (dnaL - strL + 1) && !finish; i += strL){
+                String sub = dna.substring(i, i + strL);
                 if (str.equals(sub)){
                     curR += 1;
                 }
