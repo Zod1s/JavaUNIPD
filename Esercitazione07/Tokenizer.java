@@ -12,7 +12,7 @@ public class Tokenizer{
                 Scanner parser2 = new Scanner(line);
                 while (parser2.hasNext()){
                     String word = parser2.next().toLowerCase();
-                    Scanner parser3 = new Scanner(word).useDelimiter("[']+");
+                    Scanner parser3 = new Scanner(word).useDelimiter("[']+"); // togli .useDelimiter per avere solo gli spazi come delimitatori
                     String word1 = parser3.next();
                     if (!word1.equals(word)){
                         String head = word1.substring(0, 1);
