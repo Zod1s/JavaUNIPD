@@ -6,10 +6,7 @@ public class Tokenizer{
         System.out.println("Inserisci due file, il primo di lettura e il secondo di scrittura: ");
         String read = s.next();
         String write = s.next();
-        try{
-            FileReader f = new FileReader(read);
-            Scanner parser = new Scanner(f);
-            PrintWriter p = new PrintWriter(write);
+        try(FileReader f = new FileReader(read); Scanner parser = new Scanner(f); PrintWriter p = new PrintWriter(write);){
             while (parser.hasNextLine()){
                 String line = parser.nextLine();
                 Scanner parser2 = new Scanner(line);
@@ -39,9 +36,6 @@ public class Tokenizer{
                 parser2.close();
                 p.print("\n");
             }
-            p.close();
-            parser.close();
-            f.close();
             s.close();
         }
         catch (FileNotFoundException e){
