@@ -12,7 +12,8 @@ public class Tokenizer{
                 Scanner parser2 = new Scanner(line);
                 while (parser2.hasNext()){
                     String word = parser2.next().toLowerCase();
-                    Scanner parser3 = new Scanner(word).useDelimiter("[']+"); // togli .useDelimiter per avere solo gli spazi come delimitatori
+                    // uso anche gli apostrofi come delimitatori
+                    Scanner parser3 = new Scanner(word).useDelimiter("[']+");
                     String word1 = parser3.next();
                     if (!word1.equals(word)){
                         String head = word1.substring(0, 1);
@@ -32,6 +33,12 @@ public class Tokenizer{
                         p.print(word+" ");
                     }
                     parser3.close();
+
+                    // uso solo gli spazi come delimitatori
+                    // String head = word.substring(0, 1);
+                    // String tail = word.substring(1);
+                    // word = head.toUpperCase() + tail;
+                    // p.print(word+" ");
                 }
                 parser2.close();
                 p.print("\n");
