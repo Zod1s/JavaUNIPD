@@ -71,15 +71,15 @@ public class SortedArrayMap implements SortedMapInterface{
         if (key == null || !(key instanceof Comparable)) throw new IllegalArgumentException();
         Comparable compKey = (Comparable) key;
         int low = 0;
-        int high = size - 1;
-        while (low <= high){
+        int high = size;
+        while (low < high){
             int mid = (low + high) / 2;
             ComparablePair elem = map[mid];
             if (elem.key.equals(key)){
                 return elem.value;
             }
             else if (elem.key.compareTo(compKey) > 0){
-                high = mid - 1;
+                high = mid;
             }
             else{
                 low = mid + 1;
