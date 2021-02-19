@@ -61,6 +61,7 @@ public class ArrayDeque implements DequeInterface{
 
     public Object removeFirst(){
         Object r = getFirst();
+        deque[front] = null;
         front = increment(front);
         return r;
     }
@@ -68,6 +69,7 @@ public class ArrayDeque implements DequeInterface{
     public Object removeLast(){
         Object r = getLast();
         back = decrement(back);
+        deque[back] = null;
         return r;
     }
 

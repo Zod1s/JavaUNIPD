@@ -8,10 +8,16 @@ public class DequeStack extends ArrayDeque{
     }
 
     public Object pop(){
+        if (isEmpty()){
+            throw new IllegalArgumentException();
+        }
         return super.removeLast();
     }
 
     public Object top(){
+        if (isEmpty()){
+            throw new IllegalArgumentException();
+        }
         return super.getLast();
     }
     

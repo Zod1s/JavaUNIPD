@@ -12,6 +12,6 @@ public class MondrianViewer{
         frame.add(component);
 
         frame.setVisible(true);
-        System.out.println("Fine");      
-    }   
+        System.out.println("Fine");
+    }
 }
