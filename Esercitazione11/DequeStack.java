@@ -16,7 +16,7 @@ public class DequeStack extends ArrayDeque{
     }
     
     public void addFirst(Object element){
-       return null;
+       return;
     }
 
     public void addLast(Object element){
